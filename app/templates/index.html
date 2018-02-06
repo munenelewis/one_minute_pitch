@@ -1,64 +1,12 @@
-
+{% import 'macro.html' as  macro %}
 {% extends 'base.html'%}
 
 {% block content %}
-<head>
+<ul>
+  <li>
+    {{macro.displayCategoryList(categories) }}
+  </li>
+</ul>
 
-       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-<style>
-
-       body{
-           padding:0;
-           margin:0;
-         }
-         .parent{
-           width:80%;
-           margin:auto;
-           overflow:hidden;
-         }
-         .sidebar{
-           margin-left:-200px;
-           top:0;
-           float:left;
-           width:200px;
-           height:90vh;
-           background-color:red;
-         }
-         .sidebar.active{
-           
-           margin-left:0px;
-         }
-         .content{
-           width:100%;
-           height:100vh;
-           background-color:rgb(157, 157, 184);
-         }
-         
-         #btn{
-           margin-left:300px;
-         }
-</style>
-</head>
-
-
-     <div class="parent">
-           <div class="sidebar active">
-                  
-                           <h3 class="w3-bar-item">CATEGORIES</h3>
-                           <ul> 
-                          <a href="/promo"><li>promotion pitch</li></a>  
-                          <a href="/pickup"><li>pickup lines</li></a> 
-                          <a href="/interview"><li>interview pitch</li></a> 
-                          <a href="/product"><li>product pitch</li></a> 
-                         
-                           </ul>
-           
-
-                       
-           </div>
-           <div class="content">
-             Content
-            
-           </div>
-           </div>
+    
 {% endblock%}
