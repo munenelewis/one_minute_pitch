@@ -1,5 +1,5 @@
 from . import db
-
+from werkzeug.security import generate_password_hash,check_password_hash
 
 
 class Pitch:
@@ -10,7 +10,8 @@ class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255))
-    
+    cat_id = db.Column(db.Integer,db.ForeignKey('categories.id'))
+    pass_secure = db.Column(db.String(255))
 
 
     def __repr__(self):
@@ -19,6 +20,7 @@ class Category(db.Model):
     __tablename_='categories'
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String(255))
+    users = db.relationship('User',backref = 'categories',lazy="dynamic")
     @classmethod
     def get_categories(cls):
         categories = Category.query.all()
