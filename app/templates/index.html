@@ -1,12 +1,10 @@
-{% import 'macro.html' as  macro %}
-{% extends 'base.html'%}
-
+{% extends 'base.html' %} 
+{% import 'macro.html' as macro %}
 {% block content %}
-<ul>
-  <li>
-    {{macro.displayCategoryList(categories) }}
-  </li>
-</ul>
 
-    
-{% endblock%}
+
+
+
+      {{macro.displayPitchList(pitches)}}
+
+{% endblock %}
