@@ -17,7 +17,7 @@ class User(UserMixin,db.Model):
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     password_hash = db.Column(db.String(255))
-    users = db.relationship('User',backref = 'pitches',lazy="dynamic")
+    #users = db.relationship('User',backref = 'pitches',lazy="dynamic")
     
     @property
     def password(self):
@@ -51,7 +51,7 @@ class Pitch(db.Model):
     category = db.Column(db.String(255))
     title = db.Column(db.String(255))
     body = db.Column(db.String())
-    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+    #user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     # comments = db.Column(db.String())
 
     def save_pitches(self):
@@ -60,12 +60,12 @@ class Pitch(db.Model):
 
     @classmethod
     def get_pitches(cls):
-        pitches = Pitch.query.all()
+        pitches = pitches.query.all()
         return pitches
 
     @classmethod
     def get_categories(cls, category):
-        pitch_cat = Pitch.query.filter_by(category=category)
+        pitch_cat = pitches.query.filter_by(category=category)
         return pitch_cat
 
     def __init__(self,title, body, category):
