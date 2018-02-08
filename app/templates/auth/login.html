@@ -2,13 +2,64 @@
 {% import 'bootstrap/wtf.html' as wtf%}
 
 {% block content%}
+<head>
+  <style>
+      body {
+        font-size: 14px;
+        line-height: 1.42857;
+        color: rgb(51, 51, 51);
+        font-family: Arial;
+        background-color: rgb(52, 152, 219);
+        padding: 50px;
+    }
+    .login{
+      background-color: #FFF;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px auto;
+    width: 300px;
+    text-align: center;
+    }
+    input{
+      text-align: center;
+      background-color: #ECF0F1;
+      border: 2px solid transparent;
+      border-radius: 3px;
+      font-size: 16px;
+      font-weight: 200;
+      padding: 10px 0;
+      width: 250px;
+      transition: border .5s;
+    }
+    input#submit{
+      font-size: 12px;
+      color: #444;
+      display: block;
+      margin-top: 12px;
+      border: 2px solid transparent;
+      background: #3498DB;
+      color: #ffffff;
+      font-size: 16px;
+      line-height: 25px;
+      padding: 10px 0;
+      text-decoration: none;
+      text-shadow: none;
+      border-radius: 3px;
+      box-shadow: none;
+      transition: 0.25s;
+      display: block;
+      width: 250px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
 
 <div class="container">
   <div class="row">
 
-    <div class="col-md-2"> </div>
+    
 
-    <div class="col-md-8">
+    <div class=" login">
       <!-- Flash message -->
       {% for message in get_flashed_messages() %}
           <div class="alert alert-danger">
@@ -18,17 +69,20 @@
 
       {% endfor %}
       <!-- Login form  -->
-
-      {{ wtf.quick_form(login_form) }}
+          <div class="">
+              {{ wtf.quick_form(login_form) }}
+          </div>
+      
 
       <p> Don't  have an account?  <a href="{{url_for('auth.regester')}}">Sign up here</a></p>
 
     </div>
 
-    <div class="col-md-2"> </div>
 
   </div>
 </div>
 
-
 {%endblock%}
+
+
+
