@@ -1,0 +1,12 @@
+{% extends 'base.html' %} 
+{% import 'macro.html' as macro %}
+{% block content %}
+
+
+
+
+      {{macro.displayPitchList(pitches)}}
+
+      <a href="/newpitch"> add new pitch</a>
+
+{% endblock %}
