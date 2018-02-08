@@ -7,10 +7,22 @@
       <div class="card-body text-success">
         <h5 class="card-title"></h5>
         <p class="card-text">{{pitch.body}}</p>
-        <a href="{{url_for('main.new_comment',id=pitch.id)}}">Vote</a>
+        <a href="/comment"> review file </a>
+        <table>
+          <tr>
+            <td><h4 class="text-left"><a class="btn btn-round" href="#">Upvote <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>  </a></h4></td>
+            <td>&nbsp;</td>
+            <td><h4 class="text-left"><a class="btn btn-round" href="#">Downvote <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>  </a></h4></td>
+            <td>&nbsp;</td>
+            <td><h4 class="text-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <p>
+            </h4></td>
+          </tr>
+        </table>
       </div>
       <div class="card-footer bg-transparent border-success">{{pitch.category}}</div>
       <h3>{{pitch.content}}</h3>
+      <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
+      
 
     </div>
   </div>
