@@ -1,9 +1,9 @@
 from . import main
 from flask import render_template,request,redirect,url_for,abort
 from flask_login import login_required,current_user
-from .forms import ReviewForm,UpdateProfile,PitchForm
+from .forms import ReviewForm,UpdateProfile,PitchForm,CommentsForm,UpvoteForm
 
-from ..models import Pitch
+from ..models import Pitch,Comment,User
 from .. import db
 
 
@@ -60,7 +60,7 @@ def new_pitch():
         pitches = Pitch(title = form.title.data,body = form.body.data,category = form.category.data)
 
         pitches.save_pitches()
-        # print('Your Pitch has been successfully saved!')
+        # print('Your Pitch has been succenssfully saved!')
         return redirect(url_for('main.new_pitch'))
     return render_template('newpitch.html',pitch_form = form)
 
@@ -116,3 +116,16 @@ def pick_up():
     print(pitches)
 
     return render_template('pick_up.html',title=title,pitches=pitches)
+
+
+@main.route('/pitch/comments/new/<int:id>',methods = ['GET','POST'])
+@login_required
+def new_comment(id):
+    form = CommentsForm()
+    vote_form = UpvoteForm()
+    if form.validate_on_submit():
+        new_comment = Comment(comment=form.comment.data,username=current_user.username,votes=form.vote.data)
+        new_comment.save_comment()
+        return redirect(url_for('main.index'))
+    #title = f'{pitch_result.id} review'
+    return render_template('new_comment.html',comment_form=form, vote_form= vote_form)
