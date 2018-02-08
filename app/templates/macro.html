@@ -1,4 +1,4 @@
- {% macro displayPitchList(pitch_list) %} {% for pitch in pitch_list %}
+{% macro displayPitchList(pitch_list) %} {% for pitch in pitch_list %}
 
   <div class="col-md-4">
     <div class="card border-success mb-3">
@@ -7,9 +7,11 @@
       <div class="card-body text-success">
         <h5 class="card-title"></h5>
         <p class="card-text">{{pitch.body}}</p>
-        <a href="/comment"> review file </a>
+        <a href="{{url_for('main.new_comment',id=pitch.id)}}">Vote</a>
       </div>
       <div class="card-footer bg-transparent border-success">{{pitch.category}}</div>
+      <h3>{{pitch.content}}</h3>
+
     </div>
   </div>
 
