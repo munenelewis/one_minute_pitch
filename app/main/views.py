@@ -1,7 +1,7 @@
 from . import main
 from flask import render_template,request,redirect,url_for,abort
 from flask_login import login_required,current_user
-from .forms import ReviewForm,UpdateProfile
+from .forms import ReviewForm,UpdateProfile,PitchForm
 
 from ..models import Pitch
 from .. import db
@@ -14,10 +14,14 @@ def index():
     '''
     title = 'Home - Welcome to The best Pitching Website Online'
 
-    pitches = Pitch.query.filter_by(category='biz').all()
-    print(pitches)
+    bussines = Pitch.query.filter_by(category='bussines').all()
+    print(bussines)
+    pick_up = Pitch.query.filter_by(category='pick_up').all()
+    interview = Pitch.query.filter_by(category='interview').all()
 
-    return render_template('index.html',title=title,pitches=pitches)
+    product = Pitch.query.filter_by(category='product').all()
+
+    return render_template('index.html',title=title,bussines=bussines,product=product,interview=interview,pick_up=pick_up)
 @main.route('/comment', methods = ['GET','POST'])
 @login_required
 def comment():
@@ -46,3 +50,69 @@ def profile(uname):
           return redirect(url_for('.profile',uname=user.username))
 
     return render_template("profile/profile.html", user = user)
+@main.route('/newpitch' ,methods = ['GET','POST'])
+@login_required
+def new_pitch():
+
+    form = PitchForm()
+
+    if form.validate_on_submit():
+        pitches = Pitch(title = form.title.data,body = form.body.data,category = form.category.data)
+
+        pitches.save_pitches()
+        # print('Your Pitch has been successfully saved!')
+        return redirect(url_for('main.new_pitch'))
+    return render_template('newpitch.html',pitch_form = form)
+
+
+@main.route('/bussines')
+
+def bussines():
+    '''
+    View root page function that returns the index page and its data
+    '''
+    title = 'Home - Welcome to The best Pitching Website Online'
+
+    pitches = Pitch.query.filter_by(category='bussines').all()
+    print(pitches)
+
+    return render_template('bussines.html',title=title,pitches=pitches)
+
+@main.route('/product')
+
+def product():
+    '''
+    View root page function that returns the index page and its data
+    '''
+    title = 'Home - Welcome to The best Pitching Website Online'
+
+    pitches = Pitch.query.filter_by(category='product').all()
+    print(pitches)
+
+    return render_template('product.html',title=title,pitches=pitches)
+
+@main.route('/interview')
+
+def interview():
+    '''
+    View root page function that returns the index page and its data
+    '''
+    title = 'Home - Welcome to The best Pitching Website Online'
+
+    pitches = Pitch.query.filter_by(category='interview').all()
+    print(pitches)
+
+    return render_template('interview.html',title=title,pitches=pitches)
+
+@main.route('/pick_up')
+
+def pick_up():
+    '''
+    View root page function that returns the index page and its data
+    '''
+    title = 'Home - Welcome to The best Pitching Website Online'
+
+    pitches = Pitch.query.filter_by(category='pick_up').all()
+    print(pitches)
+
+    return render_template('pick_up.html',title=title,pitches=pitches)
