@@ -1,33 +1,28 @@
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color: #e3f2fd;">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="#">Navbar</a>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/newpitch">new Pitch</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/bussines">Business</a>
-        </li>
-      </ul>
-      
-      <ul class="nav navbar-nav navbar-right">
-        {% if current_user.is_authenticated %}
-        <li>{{current_user.username}}</li>
-        <li><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
-        <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
-        {% else %}
-        <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
-        {%endif%}
-      </ul>
+<div class="navbar navbar navbar-dark bg-primary navbar-inverse" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle = "collapse" data-target = ".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+            <a class="navbar-brand" href="/" style=" font-size:25px"> QUICK PITCH</a>
 
-                
     </div>
-    
-  </nav>
+      <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+               {% if current_user.is_authenticated %}
+
+                   <li><a href="/">{{current_user.username.capitalize()}}</a></li>
+                   <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+
+               {%else%}
+                   <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+
+               {%endif%}
+            </ul>
+       </div>
+
+  </div>
+</div>

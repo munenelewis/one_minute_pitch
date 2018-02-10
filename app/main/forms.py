@@ -17,19 +17,18 @@ class UpdateProfile(FlaskForm):
 class PitchForm(FlaskForm):
     title = StringField('Pitch Title',validators=[Required()])
     body =TextAreaField('Pitch Content',validators=[Required()])
-    category =SelectField('lease pick from the following categories',choices=[('pick_up','Pick-up lines'),('interview','Interview Pitches'),
-        ('bussines', 'bussiness pitches'),
-        ('product', 'product pitch')],validators=[Required()])
     submit = SubmitField('Submit') 
 
 class CommentsForm(FlaskForm):
     comment = TextAreaField('Comment', validators=[Required()])
-    vote=RadioField('default field arguments', choices=[('1', 'UpVote'), ('1', 'DownVote')])
     submit = SubmitField('SUBMIT') 
 
 
-class UpvoteForm(FlaskForm):
+
+class CategoryForm(FlaskForm):
     '''
-    Class to create a wtf form for upvoting a pitch
+    Class to create a wtf form for creating a pitch
     '''
-    submit = SubmitField('Upvote')
+    name =  StringField('Category Name', validators=[Required()])
+    description = TextAreaField('Pitch Content',validators=[Required()])
+    submit = SubmitField('Create')

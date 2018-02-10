@@ -1,31 +1,41 @@
-{% macro displayPitchList(pitch_list) %} {% for pitch in pitch_list %}
+{% macro displayPitchList(pitch_list) %} 
+{% for pitch in pitch_list %}
+<div class="col-md-12">
+  <div class="well">
+    <div class="row">
+      <p>{{pitch.body|upper}}</p></a>
+      <div class="col-md-10 col-sm-12">
+          <h3>{{pitch.content}}</h3>
+            <h4>  <span><a href=" {{url_for('.view_pitch',id=pitch.id)}}">Read comments</a></span>  </h4>
 
-  <div class="col-md-4">
-    <div class="card border-success mb-3">
-
-      <div class="card-header bg-transparent border-success">{{pitch.title}}</div>
-      <div class="card-body text-success">
-        <h5 class="card-title"></h5>
-        <p class="card-text">{{pitch.body}}</p>
-        <a href="/comment"> review file </a>
-        <table>
-          <tr>
-            <td><h4 class="text-left"><a class="btn btn-round" href="#">Upvote <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>  </a></h4></td>
-            <td>&nbsp;</td>
-            <td><h4 class="text-left"><a class="btn btn-round" href="#">Downvote <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>  </a></h4></td>
-            <td>&nbsp;</td>
-            <td><h4 class="text-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <p>
-            </h4></td>
-          </tr>
-        </table>
+          <a href=" {{url_for('.post_comment',id=pitch.id)}}"><h4>COMMENT</h4></a>
       </div>
-      <div class="card-footer bg-transparent border-success">{{pitch.category}}</div>
-      <h3>{{pitch.content}}</h3>
-      <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
-      
+      </div>
+  </HISTORY> ..
 
+</div>
+
+
+{% endfor %} 
+{% endmacro %}
+
+{% macro displayCategoryList(category_list) %}
+  {% for category in category_list%}
+        <div>
+
+          <a href="{{url_for('.category',id=category.id)}}"><p>{{category.name|upper}}</p></a>
+        </div>
+
+    {% endfor %}
+{% endmacro %}
+
+
+{% macro displaySpecificPitch(specific_pitch_list) %}
+ {% for comment in specific_pitch_list %}
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+        <hr>
+        <p style="color:orange">{{comment.comment}} </p>
+         <p style="text-align:right; color:#555652; font-size:10px;">{{comment.time_posted.strftime('%Y/%m/%d || %r') }}</p>
     </div>
-  </div>
-
-
-{% endfor %} {% endmacro %}
+  {% endfor %}
+{% endmacro %}
