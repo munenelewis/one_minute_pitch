@@ -1,36 +1,52 @@
 {% extends 'base.html' %}
  {% import 'macro.html' as macro%}
 {% block content %}
+<head>
+  <style>
+    html {
+      font-size: 10px;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      background-color: #352d2d;
+  }
+  body {
+    font-family: -webkit-pictograph;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #3c2f2f;
+    background-color: #292121;
+}
+  </style>
+</head>
 <div class="container">
      <div class="col-md-12">
         <p class="text-left"><a class="btn btn-primary" href="{{url_for('.new_pitch',id=pitches.category_id)}}">Post Pitch</a></p>
-        <div class="well" style="background-color:lightblue">
+        <div class="" style="background-color:lightblue">
           <h3>{{pitches.content}}</h3>
         </div>
 
         <!-- comments -->
-        <div class="col-md-6 col-offset-1">
-          <table>
-            <tr>
-              <td><h4 class="text-left"><a class="btn btn-round" href="{{url_for('.upvote',id=pitches.id)}}">Upvote <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>  </a></h4></td>
-              <td>&nbsp;</td>
-              <td><h4 class="text-left"><a class="btn btn-round" href="{{url_for('.downvote',id=pitches.id)}}">Downvote <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>  </a></h4></td>
-              <td>&nbsp;</td>
-              <td><h4 class="text-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    Comments   <a class="btn btn-primary" href="{{url_for('.post_comment',id=pitches.id)}}"> Add your comment</a></h4></td>
-            </tr>
-          </table>
+   
+        <div class="card text-whitebg-info mb-3" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <h6 class="card-subtitle mb-2 text-muted"></h6>
+            <p class="card-text">         {{ macro.displaySpecificPitch(comment)}}
+            </p>
+            <a href="{{url_for('.upvote',id=pitches.id)}}" class="card-link">Upvote <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
+            <a href="{{url_for('.downvote',id=pitches.id)}}" class="card-link">Downvote <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>
+            <h4 class="">   <a class="btn btn-primary" href="{{url_for('.post_comment',id=pitches.id)}}"> Add your comment</a>
+          </div>
+        </div>
 
 
-
-         {% if comment %}
-         {{ macro.displaySpecificPitch(comment)}}
          <hr>
-         {%else%}
-         <h3 class="text-center" style="color:orange;">No comments </h3>
-         {% endif %}
+
         </div>
 
     </div>
   </div>
 
 {% endblock %}
+
+

@@ -1,17 +1,26 @@
 {% macro displayPitchList(pitch_list) %} 
 {% for pitch in pitch_list %}
-<div class="col-md-12">
+<head>
+  <style>
+    a {
+      color: #101010;
+      text-decoration: none;
+  }
+  </style>
+</head>
+<div class="">
   <div class="well">
     <div class="row">
       <p>{{pitch.body|upper}}</p></a>
       <div class="col-md-10 col-sm-12">
           <h3>{{pitch.content}}</h3>
-            <h4>  <span><a href=" {{url_for('.view_pitch',id=pitch.id)}}">Read comments</a></span>  </h4>
+            
+          <a href=" {{url_for('.view_pitch',id=pitch.id)}}"class="badge badge-primary">Read comments </h4></a>
 
-          <a href=" {{url_for('.post_comment',id=pitch.id)}}"><h4>COMMENT</h4></a>
+          <a href=" {{url_for('.post_comment',id=pitch.id)}}" class="badge badge-secondary">COMMENT </a>
       </div>
       </div>
-  </HISTORY> ..
+  
 
 </div>
 

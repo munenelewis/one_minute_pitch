@@ -5,6 +5,18 @@
 {%endblock%}
 
 {% block content %}
+<head>
+  <style>
+    body {
+      font-family: cursive;
+      font-size: 14px;
+      line-height: 1.42857143;
+      color: #333;
+      background-color: #565151;
+      transform-style: preserve-3d;
+  }
+  </style>
+</head>
 <div class="container">
   {{wtf.quick_form(comment_form)}}
 </div>

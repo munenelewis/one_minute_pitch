@@ -7,6 +7,15 @@
 {% endblock %}
 
 {% block content %}
+<head>
+    <style>
+      html {
+        font-size: 10px;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        background-color: #352d2d;
+    }
+    </style>
+  </head>
     <div class="container">
         <a href="{{url_for('main.index')}}">
             <button type="button" class="btn btn-primary btn-sm">
