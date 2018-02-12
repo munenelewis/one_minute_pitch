@@ -7,7 +7,7 @@ from flask_script import Manager,Server
 # from app.models import User, Role, Comment,Pitch
 
 #creating an app instance  
-app = create_app('production')  
+app = create_app('development')  
 
 
 manager = Manager(app)
