@@ -21,7 +21,22 @@
 
 {% macro displayCategoryList(category_list) %}
   {% for category in category_list%}
-        <div>
+  <head>
+    <style>
+      .cat{
+         
+        background-color: #034;
+    
+        width: 194px;
+
+    }
+    </style>
+  </head>
+  <div class="col-md-4">
+
+
+  </div>
+        <div class="cat"> 
 
           <a href="{{url_for('.category',id=category.id)}}"><p>{{category.name|upper}}</p></a>
         </div>
